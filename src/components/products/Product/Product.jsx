@@ -22,7 +22,9 @@ const Product = ({ product }) => {
           </Typography>
           <Typography variant='h5'>{product.price}</Typography>
         </div>
-        <Typography variant='h5'>{product.description}</Typography>
+        <Typography variant='body2' color='textSecondary'>
+          {product.description}
+        </Typography>
       </CardContent>
       <CardActions disableSpacing className={classes.cardActions}>
         <IconButton aria-label='Add-to-Cart'>

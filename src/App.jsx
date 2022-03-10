@@ -1,10 +1,11 @@
 import React from 'react';
+import Navbar from './components/Navbar/Navbar';
 import Products from './components/products/Products';
 
 function App() {
   return (
     <div>
-      <h1>Hello</h1>
+      <Navbar />
       <Products />
     </div>
   );
