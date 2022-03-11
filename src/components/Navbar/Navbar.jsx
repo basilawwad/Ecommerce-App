@@ -6,7 +6,7 @@ import Styles from './Navbar.module.css';
 
 const Navbar = ({ totalItems }) => {
   return (
-    <AppBar position='fixed' className={Styles.appBar} color='inherit'>
+    <AppBar position='sticky' className={Styles.appBar} color='inherit'>
       <Toolbar className={Styles.toolBar}>
         <Typography variant='h6' className={Styles.title} color='inherit'>
           {/* <img src={} alt='commerceApp' height="25px" className={Styles.image} /> */}
