@@ -5,10 +5,8 @@ import Styles from './Cart.module.css';
 import CartItem from './CartItem/CartItem';
 import { Link } from 'react-router-dom';
 
-const Cart = ({ cart }) => {
+const Cart = ({ cart, updateCartQuantity, emptyCart, removeFromCart }) => {
   if (!cart.line_items) return 'Loading....';
-
-  console.log(cart.line_items);
 
   const EmptyCard = () => {
     return (
@@ -24,7 +22,11 @@ const Cart = ({ cart }) => {
         <Grid className={Styles.cardDetails}>
           {cart.line_items.map((item) => (
             <Grid item xs={12} sm={4} key={item.id}>
-              <CartItem item={item} />
+              <CartItem
+                item={item}
+                updateCartQuantity={updateCartQuantity}
+                removeFromCart={removeFromCart}
+              />
             </Grid>
           ))}
         </Grid>
@@ -36,8 +38,9 @@ const Cart = ({ cart }) => {
               size='large'
               type='button'
               variant='contained'
-              color='secondary'>
-              Empty Cart{' '}
+              color='secondary'
+              onClick={emptyCart}>
+              Empty Cart
             </Button>
             <Button
               className={Styles.checkoutButton}
