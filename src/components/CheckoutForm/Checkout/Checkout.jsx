@@ -9,11 +9,16 @@ import {
   Divider,
   Button
 } from '@material-ui/core';
+import AddressForm from '../AddressForm';
+import PaymentForm from '../PaymentForm';
+import CompletedPage from '../CompletedPage';
 
 const steps = ['Shipping address', 'Payment Details'];
 
 const Checkout = () => {
   const [activeStep, setActiveStep] = useState(0);
+
+  const Form = () => (activeStep == 0 ? <AddressForm /> : <PaymentForm />);
   return (
     <div>
       <main>
@@ -26,6 +31,7 @@ const Checkout = () => {
               </Step>
             ))}
           </Stepper>
+          {activeStep == steps.length ? <CompletedPage /> : <Form />}
         </Paper>
       </main>
     </div>
