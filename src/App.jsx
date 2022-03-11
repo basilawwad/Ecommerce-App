@@ -3,6 +3,7 @@ import Cart from './components/Cart/Cart';
 import Navbar from './components/Navbar/Navbar';
 import Products from './components/Products/Products';
 import { commerce } from './lib/commerce';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -25,16 +26,35 @@ function App() {
     fetchCart();
   };
 
+  const removeFromCart = (productId) => {
+    commerce.cart.remove(productId).then(fetchCart());
+  };
+
+  const editCart = (productId, quantity) => {
+    commerce.cart.update(productId, quantity).then(fetchCart());
+  };
+
+  const emptyCart = () => {
+    commerce.cart.empty().then(fetchCart());
+  };
+
   useEffect(() => {
     fetchProducts();
     fetchCart();
   }, []);
   return (
-    <div>
-      <Navbar totalItems={cart.total_items} />
-      <Products products1={products} handleAddToCart={handleAddToCart} />
-      <Cart cart={cart} />
-    </div>
+    <Router>
+      <div>
+        <Navbar totalItems={cart.total_items} />
+        <Routes>
+          <Route
+            exact
+            path='/'
+            element={<Products products1={products} handleAddToCart={handleAddToCart} />}></Route>
+          <Route path='/Cart' element={<Cart cart={cart} />}></Route>
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

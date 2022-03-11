@@ -3,6 +3,7 @@ import { Container, Typography, Button, Grid } from '@material-ui/core';
 
 import Styles from './Cart.module.css';
 import CartItem from './CartItem/CartItem';
+import { Link } from 'react-router-dom';
 
 const Cart = ({ cart }) => {
   if (!cart.line_items) return 'Loading....';
@@ -10,7 +11,11 @@ const Cart = ({ cart }) => {
   console.log(cart.line_items);
 
   const EmptyCard = () => {
-    return <Typography variant='subtitle1'>Your Cart is Empty, hurry up and add some</Typography>;
+    return (
+      <Typography variant='subtitle1'>
+        Your Cart is Empty,<Link to='/'> Go back to add some</Link>
+      </Typography>
+    );
   };
 
   const FilledCard = () => {
