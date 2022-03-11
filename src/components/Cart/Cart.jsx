@@ -2,9 +2,10 @@ import React from 'react';
 import { Container, Typography, Button, Grid } from '@material-ui/core';
 
 import Styles from './Cart.module.css';
+import CartItem from './CartItem/CartItem';
 
 const Cart = ({ cart }) => {
-  const isEmpty = cart.line_items ? cart.line_items.length == 0 : true;
+  if (!cart.line_items) return 'Loading....';
 
   console.log(cart.line_items);
 
@@ -15,10 +16,10 @@ const Cart = ({ cart }) => {
   const FilledCard = () => {
     return (
       <section>
-        <Grid>
+        <Grid className={Styles.cardDetails}>
           {cart.line_items.map((item) => (
             <Grid item xs={12} sm={4} key={item.id}>
-              <div>{item.name}</div>
+              <CartItem item={item} />
             </Grid>
           ))}
         </Grid>
@@ -49,10 +50,10 @@ const Cart = ({ cart }) => {
 
   return (
     <Container>
-      <Typography className={Styles.title} variant='h3'>
+      <Typography className={Styles.title} variant='h3' gutterBottom>
         Your Shopping Cart
       </Typography>
-      {isEmpty ? <EmptyCard /> : <FilledCard />}
+      {cart.line_items.length == 0 ? <EmptyCard /> : <FilledCard />}
     </Container>
   );
 };
