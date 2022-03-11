@@ -7,7 +7,7 @@ import Styles from './Navbar.module.css';
 const Navbar = () => {
   return (
     <AppBar position='fixed' className={Styles.appBar} color='inherit'>
-      <Toolbar>
+      <Toolbar className={Styles.toolBar}>
         <Typography variant='h6' className={Styles.title} color='inherit'>
           {/* <img src={} alt='commerceApp' height="25px" className={Styles.image} /> */}
           Test App

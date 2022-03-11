@@ -1,0 +1,10 @@
+.content {
+  flex-grow: 1;
+  background-color: rgba(242, 242, 242, 0.45);
+  padding: 1rem;
+  margin-top: 100px;
+}
+
+.root {
+  flex-grow: 1;
+}
