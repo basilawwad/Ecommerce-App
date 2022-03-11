@@ -4,7 +4,9 @@ import { Container, Typography, Button, Grid } from '@material-ui/core';
 import Styles from './Cart.module.css';
 
 const Cart = ({ cart }) => {
-  const isEmpty = cart.line_items ? cart.line_items.length == 0 : true;
+  if (!cart.line_items) return 'Loading....';
+
+  const isEmpty = cart.line_items.length == 0;
 
   console.log(cart.line_items);
 
