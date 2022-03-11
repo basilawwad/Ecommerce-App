@@ -4,7 +4,7 @@ import { ShoppingCart } from '@material-ui/icons';
 
 import Styles from './Navbar.module.css';
 
-const Navbar = () => {
+const Navbar = ({ totalItems }) => {
   return (
     <AppBar position='fixed' className={Styles.appBar} color='inherit'>
       <Toolbar className={Styles.toolBar}>
@@ -15,7 +15,7 @@ const Navbar = () => {
         <div className={Styles.grow}></div>
         <div className={Styles.button}>
           <IconButton aria-label='Show cart items' color='inherit'>
-            <Badge badgeContent={2} color='secondary'>
+            <Badge badgeContent={totalItems} color='secondary'>
               <ShoppingCart />
             </Badge>
           </IconButton>

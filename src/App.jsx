@@ -5,26 +5,35 @@ import { commerce } from './lib/commerce';
 
 function App() {
   const [products, setProducts] = useState([]);
+  const [cart, setCart] = useState({});
 
-  const fetchProducts = () => {
-    commerce.products
-      .list()
-      .then(({ data }) => {
-        setProducts(data);
-        console.log(data);
-      })
-      .catch((error) => {
-        console.log('There was an error fetching the products', error);
-      });
+  const fetchProducts = async () => {
+    const { data } = await commerce.products.list();
+
+    setProducts(data);
+  };
+
+  const fetchCart = async () => {
+    const response = await commerce.cart.retrieve();
+
+    setCart(response);
+  };
+
+  const handleAddToCart = async (productId, quantity) => {
+    const selectedItem = await commerce.cart.add(productId, quantity);
+    fetchCart();
+
+    console.log(cart);
   };
 
   useEffect(() => {
     fetchProducts();
+    fetchCart();
   }, []);
   return (
     <div>
-      <Navbar />
-      <Products products1={products} />
+      <Navbar totalItems={cart.total_items} />
+      <Products products1={products} handleAddToCart={handleAddToCart} />
     </div>
   );
 }
