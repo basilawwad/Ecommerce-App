@@ -44,7 +44,9 @@ const Cart = ({ cart }) => {
               size='large'
               type='button'
               variant='contained'
-              color='primary'>
+              color='primary'
+              component={Link}
+              to='/checkout'>
               Finish Payment
             </Button>
           </section>
